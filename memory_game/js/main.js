@@ -44,20 +44,28 @@ alert("Sorry, try again.");
 
 var flipCard = function (cardID) {
 	
-	console.log ("User flipped " + cards[cardID].rank);
-	console.log (cards[cardID].cardImage);
-	console.log (cards[cardID].suit);
+	var cardId= this.getAttribute('data-id')
+	this.setAttribute('src', cards[cardId].cardImage);
 
-	cardsInPlay.push (cards[cardID].rank);
-
+	cardsInPlay.push(cards[cardId].rank);
 	if (cardsInPlay.length === 2) {
 	//console.log(cardsInPlay.length + " Evaluate match!");
 	checkForMatch();
+//console.log(cardsInPlay.length +" Draw another card!");
 }
-	else; //console.log(cardsInPlay.length +" Draw another card!");
+}
 
+var createBoard = function(){
+for (var i = 0; i < cards.length; i++) {
+var cardElement = document.createElement('img');
+cardElement.setAttribute('src', 'images/back.png');
+cardElement.setAttribute('data-id', i);
+cardElement.addEventListener('click',flipCard);
+document.getElementById('game-board').appendChild(cardElement)
 }
-flipCard (0);
-flipCard (2);
+};
+
+
+createBoard ();
 
 
